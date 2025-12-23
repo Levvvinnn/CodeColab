@@ -11,8 +11,8 @@
     <name>snipmgr-backend</name>
 
     <modules>
-        <module>service-core/src</module>
-        <module>service-persistance/src</module>
+        <module>service-core</module>
+        <module>service-persistance</module>
     </modules>
 
     <properties>
