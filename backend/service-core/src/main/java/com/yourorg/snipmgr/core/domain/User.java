@@ -1,18 +1,18 @@
-package com.youorg.snipmgr.core.domain;
+package com.yourorg.snipmgr.core.domain;
 
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
 public record User(
-    UUID id;
-    String email;
-    String displayName;
-    String passwordHash;
-    Instant createdAt;
-    Instant lastLoginAt;
-    boolean isActive;
-){
+    UUID id,
+    String email,
+    String displayName,
+    String passwordHash,
+    Instant createdAt,
+    Instant lastLoginAt,
+    boolean isActive
+) {
     public User{
         Objects.requireNonNull(id,"id must not be null");
         Objects.requireNonNull(email, "email must not be null");
