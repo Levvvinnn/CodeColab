@@ -3,17 +3,15 @@ package com.yourorg.snipmgr.core.dto;
 import java.time.Instant;
 import java.util.UUID;
 
-public record UserDto{
-    private UUID id,
-    private String email,
-    private String displayName,
-    private String passwordHash,
-    private Instant createdAt,
-    private Instant lastLoginAt,
-    private boolean isActive
+public class UserDto {
+    private UUID id;
+    private String email;
+    private String displayName;
+    private Instant createdAt;
+    private Instant lastLoginAt;
+    private boolean isActive;
 
-    public UserDto(){
-
+    public UserDto() {
     }
 
     public UserDto(
@@ -23,7 +21,7 @@ public record UserDto{
         Instant createdAt,
         Instant lastLoginAt,
         boolean isActive
-    ){
+    ) {
         this.id = id;
         this.email = email;
         this.displayName = displayName;
@@ -31,6 +29,7 @@ public record UserDto{
         this.lastLoginAt = lastLoginAt;
         this.isActive = isActive;
     }
+
     public UUID getId() { return id; }
     public void setId(UUID id) { this.id = id; }
 
@@ -47,6 +46,6 @@ public record UserDto{
     public void setLastLoginAt(Instant lastLoginAt) { this.lastLoginAt = lastLoginAt; }
 
     public boolean isActive() { return isActive; }
-    public void setActive(boolean active) { isActive = active; }
+    public void setActive(boolean active) { this.isActive = active; }
 
 }
