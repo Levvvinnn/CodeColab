@@ -1,0 +1,21 @@
+package com.yourorg.snipmgr.core.port.persistence;
+
+import com.yourorg.snipmgr.core.domain.User;
+
+import java.util.UUID;
+import java.util.Optional;
+
+
+public interface UserRepositoryPort{
+
+    User save(User user);
+
+    User findById(UUID id);
+
+    User findByEmail(String email);
+
+    boolean existsByEmail(String email);
+
+    void deleteById(UUID id);
+
+}

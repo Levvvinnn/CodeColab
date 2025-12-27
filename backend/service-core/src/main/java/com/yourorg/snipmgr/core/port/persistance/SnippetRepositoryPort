@@ -1,0 +1,22 @@
+package com.yourorg.snipmgr.core.port.persistence;
+
+import com.yourorg.snipmgr.core.domain.Snippet;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface SnippetRepositoryPort{
+
+    Snippet save(Snippet snippet);
+
+    Snippet findById(UUID id);
+
+    void deleteById(UUID id);
+
+    void incrementCopyCount(UUID id);
+
+    List<Snippet> findByOwnerId(UUID ownerId, int page, int size);
+
+
+}
