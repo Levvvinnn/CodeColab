@@ -8,12 +8,36 @@ import java.util.UUID;
 
 public interface SnippetRepositoryPort{
 
+     /**
+     * Persist or update a snippet.
+     *
+     * @param snippet non-null domain snippet
+     * @return persisted snippet
+     */
     Snippet save(Snippet snippet);
 
-    Snippet findById(UUID id);
+    /**
+     * Find snippet by id.
+     *
+     * @param id non-null UUID
+     * @return Optional of Snippet
+     */
+    Optional<Snippet> findById(UUID id);
 
+    /**
+     * Delete snippet by id.
+     *
+     * @param id non-null UUID
+     */
     void deleteById(UUID id);
 
+    /**
+     * Increment the copy count for a snippet using a lightweight update (avoid full entity load).
+     *
+     * Implementations may choose to return the new count, but this contract is void for simplicity.
+     *
+     * @param id non-null snippet id
+     */
     void incrementCopyCount(UUID id);
 
     List<Snippet> findByOwnerId(UUID ownerId, int page, int size);

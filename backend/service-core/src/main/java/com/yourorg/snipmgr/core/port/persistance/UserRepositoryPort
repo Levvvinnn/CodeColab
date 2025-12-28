@@ -7,15 +7,78 @@ import java.util.Optional;
 
 
 public interface UserRepositoryPort{
-
+    
+    /**
+     * Persist or update the given user.
+     * Returns the persisted user (with any DB-generated fields populated).
+     *
+     * @param user non-null domain user
+     * @return persisted user (non-null)
+     */
     User save(User user);
+    
+    /**
+     * Find a user by id.
+     *
+     * @param id non-null UUID
+     * @return Optional of User (empty if not found)
+     */
+    Optional<User> findById(UUID id);
+    
+    /**
+     * Find a user by email.
+     *
+     * @param email non-null email
+     * @return Optional of User (empty if not found)
+     */
+    Optional<User> findByEmail(String email);
 
-    User findById(UUID id);
-
-    User findByEmail(String email);
-
+    /**
+     * Check whether a user exists with the given email.
+     *
+     * @param email non-null email
+     * @return true if exists
+     */
     boolean existsByEmail(String email);
 
+    /**
+     * Delete a user by id.
+     *
+     * Note: implementations may throw runtime exceptions on failure.
+     *
+     * @param id non-null UUID
+     */
     void deleteById(UUID id);
 
+    /**
+     * Search snippets by multiple optional filters.
+     *
+     * @param query   full text query or null/empty for no query
+     * @param tags    list of tag names to filter by or null/empty for no tag filter
+     * @param language language filter or null
+     * @param ownerId ownerId filter or null
+     * @param page    zero-based page index (>= 0)
+     * @param size    page size (> 0)
+     * @param sort    sort spec (e.g. "createdAt:desc") or null
+     * @return SearchResult containing total and items for the requested page
+     */
+    SearchResult<Snippet> search(
+        String query,
+        List<String> tags,
+        String language,
+        UUID ownerId,
+        int page,
+        int size,
+        String sort
+    );
+
+    /**
+     * Find snippets belonging to an owner using paging.
+     *
+     * @param ownerId non-null owner id
+     * @param page    zero-based page index
+     * @param size    page size
+     * @return list of snippets (may be empty)
+     */
+    List<Snippet> findByOwnerId(UUID ownerId,int page,int size);
 }
